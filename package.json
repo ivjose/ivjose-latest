@@ -1,0 +1,29 @@
+{
+  "name": "ivjose-latest",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^3.1.2",
+    "@botpoison/node": "^0.1.10",
+    "astro": "^2.3.2",
+    "astro-google-fonts-optimizer": "^0.2.2",
+    "astro-imagetools": "^0.8.1",
+    "gsap": "^3.11.5",
+    "tailwindcss": "^3.3.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "astro-eslint-parser": "^0.13.3",
+    "eslint": "^8.39.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.8"
+  }
+}

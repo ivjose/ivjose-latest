@@ -1,0 +1,85 @@
+---
+import HeroSection from '../components/HeroSection.astro';
+import Service from '../components/Service.astro';
+
+import Layout from '../layouts/Layouts.astro';
+
+const tech = ['react', 'redux', 'tailwind'];
+---
+
+<Layout title="Weloc">
+  <section>
+    <!-- <section class="min-h-screen"></section>
+    <section class="min-h-screen"></section> -->
+    <!-- <section class="min-h-screen"></section> -->
+    <!-- sticky top-[10vh]  -->
+    <section class="flex min-h-screen items-center justify-center">
+      <HeroSection />
+    </section>
+
+    <Service id="website" img="/src/assets/website.png">
+      <h1
+        class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+      >
+        A better way to ship your projects SS
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        Esse id magna consectetur fugiat non dolor in ad laboris magna laborum
+        ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
+        In veniam incididunt ex veniam adipisicing sit.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-x-3 gap-y-4">
+        {
+          tech.map((item) => (
+            <span class="text-md inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-1.5 py-0.5 font-medium uppercase text-gray-600">
+              <svg
+                class="h-1.5 w-1.5 fill-gray-400"
+                viewBox="0 0 6 6"
+                aria-hidden="true"
+              >
+                <circle cx="3" cy="3" r="3" />
+              </svg>
+              {item}
+            </span>
+          ))
+        }
+      </div>
+    </Service>
+
+    <Service right id="webapp" img="/src/assets/dashboard.png">
+      <h1
+        class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+      >
+        A better way to ship your projects SS
+      </h1>
+      <p class="mt-6 text-lg leading-8 text-gray-600">
+        Esse id magna consectetur fugiat non dolor in ad laboris magna laborum
+        ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id.
+        In veniam incididunt ex veniam adipisicing sit.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-x-3 gap-y-4">
+        {
+          tech.map((item) => (
+            <span class="text-md inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-1.5 py-0.5 font-medium uppercase text-gray-600">
+              <svg
+                class="h-1.5 w-1.5 fill-gray-400"
+                viewBox="0 0 6 6"
+                aria-hidden="true"
+              >
+                <circle cx="3" cy="3" r="3" />
+              </svg>
+              {item}
+            </span>
+          ))
+        }
+      </div>
+    </Service>
+    <!-- <Service id="websitexx" /> -->
+    <!-- <Service id="app" /> -->
+  </section>
+  <!-- <section data-gsap="section" class="min-h-screen"><Service /></section> -->
+  <section class="min-h-screen"></section>
+  <section class="min-h-screen"></section>
+</Layout>
+
+<script></script>

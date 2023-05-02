@@ -1,0 +1,138 @@
+---
+import { Picture } from 'astro-imagetools/components';
+interface Props {
+  id: string;
+  right?: boolean;
+  img: string;
+}
+
+const { id, right = false, img } = Astro.props;
+---
+
+<services-container
+  data-service={`${id}`}
+  data-position={`${right ? 'right' : 'left'}`}
+  class={`mx-auto max-w-7xl block px-6 py-24 sm:py-32 lg:flex md:gap-x-10 md:px-8 md:py-20 ${
+    right ? 'flex-row-reverse' : 'flex-row'
+  }`}
+>
+  <div
+    id={`content-${id}`}
+    data-content={`content-${id}`}
+    class="mx-auto max-w-xl px-6 lg:mx-0 lg:flex-auto lg:px-0"
+  >
+    <div>
+      <slot />
+    </div>
+  </div>
+  <div
+    id={`img-${id}`}
+    data-img={`service-${id}`}
+    class="mt-16 px-6 sm:mt-24 lg:mt-0 lg:px-0"
+  >
+    <div class="mx-auto max-w-xs shadow-2xl lg:max-w-2xl">
+      <Picture
+        src={img}
+        alt="A random image"
+        sizes="(min-width: 600px) 600px, 100vw"
+      />
+    </div>
+    <!-- <Picture
+      aspectRatio={9 / 21}
+      class="shadow-2xl"
+      src={img}
+      widths={[200, 400, 600]}
+      sizes="(max-width: 600px) 100vw, 600px"
+      alt="A rocket blasting off."
+    /> -->
+
+    <!-- <Image src={img} height="auto" width={300} alt="descriptive text" /> -->
+  </div>
+</services-container>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.defaults({
+    markers: true,
+  });
+
+  class ServicesContainer extends HTMLElement {
+    constructor() {
+      super();
+
+      const service = this.dataset.service;
+
+      const position = this.dataset.position;
+
+      const idContent = document.querySelector<HTMLElement>(
+        `#content-${service}`
+      );
+      const idImg = document.querySelector<HTMLElement>(`#img-${service}`);
+
+      let mm = gsap.matchMedia();
+
+      mm.add('(min-width: 1024px)', () => {
+        gsap
+          .timeline({
+            ease: 'expo.out',
+
+            scrollTrigger: {
+              trigger: `[data-service="${service}"]`,
+              start: 'top 10%',
+              end: 'bottom 30%',
+              scrub: true,
+              pin: true,
+            },
+          })
+          .from(`[data-content="${idContent?.dataset.content}"]`, {
+            autoAlpha: 0,
+            x: position === 'right' ? -100 : 100,
+            // duration: 0.75,
+            ease: 'expo.out',
+            overwrite: 'auto',
+          })
+          .to(`[data-img=${idImg?.dataset.img}]`, {
+            yPercent: -70,
+          });
+      });
+
+      mm.add('(max-width: 1024px)', () => {
+        gsap
+          .timeline({
+            delay: 0.5,
+            defaults: {
+              ease: 'expo.out',
+              autoAlpha: 1,
+            },
+            scrollTrigger: {
+              trigger: `[data-service="${service}"]`,
+              start: 'top 5%',
+              end: 'bottom 50%',
+              scrub: true,
+              pin: true,
+            },
+          })
+          .from(`[data-content="${idContent?.dataset.content}"]`, {
+            autoAlpha: 0,
+            y: 200,
+            // duration: 0.75,
+            ease: 'expo.out',
+            overwrite: 'auto',
+          })
+          .from(`[data-img=${idImg?.dataset.img}]`, {
+            autoAlpha: 0,
+            y: 200,
+            // duration: 0.75,
+            ease: 'expo.out',
+            overwrite: 'auto',
+          });
+      });
+    }
+  }
+
+  customElements.define('services-container', ServicesContainer);
+</script>
