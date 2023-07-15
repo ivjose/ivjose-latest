@@ -1,18 +1,11 @@
 ---
+import { storyblokEditable } from '@storyblok/astro';
 import { Picture } from 'astro-imagetools/components';
-import Social from './Social.astro';
-const imageUrl =
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80';
-
-const details = {
-  firstName: 'Jose',
-  lastName: 'Santos IV',
-};
-
-const tags = `web • better • faster`;
+import Social from '../components/Social.astro';
+const { blok } = Astro.props;
 ---
 
-<div data-container="hero">
+<div data-container="hero" {...storyblokEditable(blok)}>
   <div
     data-gsap="hero-wrapper"
     class="mx-auto max-w-7xl translate-y-16 justify-center overflow-clip px-6 pb-24 pt-10 will-change-[transform,_opacity] sm:pb-32 lg:flex lg:translate-y-36 lg:items-center lg:px-8 lg:py-40"
@@ -26,7 +19,7 @@ const tags = `web • better • faster`;
           class="max-w-[200px] overflow-hidden rounded-full md:max-w-[300px] lg:max-w-md"
         >
           <Picture
-            src={imageUrl}
+            src={blok.avatar.filename}
             sizes="(max-width: 400px) 100vw, 400px"
             alt="descriptive text"
           />
@@ -45,8 +38,8 @@ const tags = `web • better • faster`;
             data-gsap="jose"
             class="inline-block will-change-[transform,_opacity]"
           >
-            {details.firstName}</span
-          >
+            {blok.firstName}
+          </span>
           <div
             class="absolute inset-0 -z-10 h-full w-full skew-x-[-30deg] bg-rose-500 text-4xl"
           >
@@ -61,7 +54,7 @@ const tags = `web • better • faster`;
             data-gsap="santos"
             class="inline-block will-change-[transform,_opacity]"
           >
-            {details.lastName}</span
+            {blok.lastName}</span
           >
           <div
             class="absolute inset-0 -z-10 h-full w-full skew-x-[-30deg] bg-slate-800 text-4xl"
@@ -71,7 +64,7 @@ const tags = `web • better • faster`;
             data-gsap="tags"
             class="invisible absolute right-0 top-0 -mr-12 -mt-8 text-xs leading-8 text-gray-600 will-change-transform lg:-mr-4 lg:-mt-10 lg:text-lg"
           >
-            {tags}
+            {blok.tags}
           </p>
         </div>
       </h1>

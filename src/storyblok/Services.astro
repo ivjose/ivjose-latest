@@ -1,0 +1,26 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import Service from '../components/Service.astro';
+import ServiceDetails from '../components/ServiceDetails.astro';
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+  {
+    blok.list?.map((service: any, index: number) => {
+      return (
+        <Service
+          id={service._uid}
+          img={service.img.filename}
+          right={index % 2 !== 0}
+        >
+          <ServiceDetails
+            title={service.title}
+            description={service.description}
+            tech={service.tech_stacks}
+          />
+        </Service>
+      );
+    })
+  }
+</div>

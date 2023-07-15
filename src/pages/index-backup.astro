@@ -1,19 +1,75 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro';
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
+import HeroSection from '../components/HeroSection.astro';
+import Service from '../components/Service.astro';
+import ServiceDetails from '../components/ServiceDetails.astro';
 import TechSkills from '../components/TechSkills.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
 
-const storyblokApi = useStoryblokApi();
-const { data } = await storyblokApi.get('cdn/stories/home', {
-  version: 'draft',
-});
+import Layout from '../layouts/BaseLayout.astro';
 
-const story = data.story;
+const tech = ['react', 'redux', 'tailwind'];
+
+const SERVICES = [
+  {
+    id: 'website',
+    img: '/src/assets/website.png',
+    title: 'A better way to ship your projects ',
+    description:
+      'Esse id magna consectetur fugiat non dolor in ad laboris magna laborum  ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id. In veniam incididunt ex veniam adipisicing sit.',
+    tech: [
+      {
+        title: 'react',
+      },
+      {
+        title: 'redux',
+      },
+      {
+        title: 'tailwind',
+      },
+    ],
+  },
+
+  {
+    id: 'webapp',
+    img: '/src/assets/dashboard.png',
+    title: 'A better way to ship your projects ',
+    description:
+      'Esse id magna consectetur fugiat non dolor in ad laboris magna laborum  ea consequat. Nisi irure aliquip nisi adipisicing veniam voluptate id. In veniam incididunt ex veniam adipisicing sit.',
+    tech: [
+      {
+        title: 'react',
+      },
+      {
+        title: 'redux',
+      },
+      {
+        title: 'tailwind',
+      },
+    ],
+  },
+];
 ---
 
-<BaseLayout title="Jose Santos IV">
-  <StoryblokComponent blok={story.content} />
+<Layout title="Weloc">
+  <!-- <section class="min-h-screen"></section>
+    <section class="min-h-screen"></section> -->
+  <!-- <section class="min-h-screen"></section> -->
+  <!-- sticky top-[10vh]  -->
+  <section class="flex min-h-screen items-center justify-center">
+    <HeroSection />
+  </section>
+
+  {
+    SERVICES.map((service, index) => (
+      <Service id={service.id} img={service.img} right={index % 2 !== 0}>
+        <ServiceDetails
+          title={service.title}
+          description={service.description}
+          tech={service.tech}
+        />
+      </Service>
+    ))
+  }
+
   <!-- <section data-gsap="section" class="min-h-screen"><Service /></section> -->
   <section class="min-h-screen">
     <TechSkills
@@ -69,4 +125,7 @@ const story = data.story;
       ]}
     />
   </section>
-</BaseLayout>
+  <section class="min-h-screen"></section>
+</Layout>
+
+<script></script>

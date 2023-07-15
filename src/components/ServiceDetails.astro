@@ -1,0 +1,45 @@
+---
+import { ISbRichtext, renderRichText } from '@storyblok/js';
+type TechProps = {
+  title: string;
+};
+
+type Props = {
+  tech: TechProps[];
+  title: string;
+  description: ISbRichtext;
+};
+
+const { tech, title, description } = Astro.props;
+const renderedRichText = renderRichText(description);
+---
+
+<div>
+  <h1
+    class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl"
+  >
+    {title}
+  </h1>
+
+  <div
+    class="prose mt-6 text-gray-600 lg:prose-xl lg:mt-8"
+    set:html={renderedRichText}
+  />
+
+  <div class="mt-10 flex flex-wrap gap-x-3 gap-y-4">
+    {
+      tech?.map((item) => (
+        <span class="text-md inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-1.5 py-0.5 font-medium uppercase text-gray-600">
+          <svg
+            class="h-1.5 w-1.5 fill-gray-400"
+            viewBox="0 0 6 6"
+            aria-hidden="true"
+          >
+            <circle cx="3" cy="3" r="3" />
+          </svg>
+          {item.title}
+        </span>
+      ))
+    }
+  </div>
+</div>
