@@ -1,5 +1,5 @@
 ---
-import { ISbRichtext, renderRichText } from '@storyblok/js';
+import { renderRichText, type ISbRichtext } from '@storyblok/js';
 type TechProps = {
   title: string;
 };
@@ -15,18 +15,16 @@ const renderedRichText = renderRichText(description);
 ---
 
 <div>
-  <h1
-    class="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl"
-  >
+  <h3 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 lg:text-6xl">
     {title}
-  </h1>
+  </h3>
 
   <div
     class="prose mt-6 text-gray-600 lg:prose-xl lg:mt-8"
     set:html={renderedRichText}
   />
 
-  <div class="mt-10 flex flex-wrap gap-x-3 gap-y-4">
+  <!-- <div class="mt-10 flex flex-wrap gap-x-3 gap-y-4">
     {
       tech?.map((item) => (
         <span class="text-md inline-flex items-center gap-x-1.5 rounded-full bg-gray-100 px-1.5 py-0.5 font-medium uppercase text-gray-600">
@@ -41,5 +39,5 @@ const renderedRichText = renderRichText(description);
         </span>
       ))
     }
-  </div>
+  </div> -->
 </div>

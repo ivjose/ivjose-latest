@@ -1,7 +1,7 @@
 ---
-import { Picture } from 'astro-imagetools/components';
+import { Image } from 'astro:assets';
 import Social from './Social.astro';
-const imageUrl =
+const imageUrl: any =
   'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80';
 
 const details = {
@@ -25,10 +25,11 @@ const tags = `web • better • faster`;
         <div
           class="max-w-[200px] overflow-hidden rounded-full md:max-w-[300px] lg:max-w-md"
         >
-          <Picture
+          <Image
             src={imageUrl}
-            sizes="(max-width: 400px) 100vw, 400px"
             alt="descriptive text"
+            width="400"
+            height="400"
           />
         </div>
       </div>

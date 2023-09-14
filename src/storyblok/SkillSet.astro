@@ -1,0 +1,12 @@
+---
+import { storyblokEditable } from '@storyblok/astro';
+import TechStack from '../components/TechStack.astro';
+const { blok } = Astro.props;
+---
+
+<div {...storyblokEditable(blok)}>
+  <TechStack tech={{ ...blok }} />
+  <!-- <div class="space-y-10 bg-white py-24 sm:py-32">
+    {blok.skills.map((skill: any) => <TechStack tech={skill} />)}
+  </div> -->
+</div>

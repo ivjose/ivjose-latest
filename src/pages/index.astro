@@ -1,7 +1,6 @@
 ---
 import { useStoryblokApi } from '@storyblok/astro';
 import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro';
-import TechSkills from '../components/TechSkills.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const storyblokApi = useStoryblokApi();
@@ -14,59 +13,4 @@ const story = data.story;
 
 <BaseLayout title="Jose Santos IV">
   <StoryblokComponent blok={story.content} />
-  <!-- <section data-gsap="section" class="min-h-screen"><Service /></section> -->
-  <section class="min-h-screen">
-    <TechSkills
-      skills={[
-        {
-          row: [
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-          ],
-        },
-        {
-          row: [
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-          ],
-        },
-        {
-          row: [
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-            {
-              title: 'Lindsay Walton ',
-              img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
-            },
-          ],
-        },
-      ]}
-    />
-  </section>
 </BaseLayout>

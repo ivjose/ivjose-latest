@@ -10,6 +10,7 @@ const { blok } = Astro.props;
     blok.list?.map((service: any, index: number) => {
       return (
         <Service
+          title={service.title}
           id={service._uid}
           img={service.img.filename}
           right={index % 2 !== 0}

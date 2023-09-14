@@ -1,18 +1,22 @@
 ---
-import { Picture } from 'astro-imagetools/components';
+import { Image } from 'astro:assets';
 interface Props {
   id: string;
+  title: string;
   right?: boolean;
-  img: string;
+  img: any;
 }
 
-const { id, right = false, img } = Astro.props;
+const { id, right = false, img, title } = Astro.props;
+
+const width = img.split('/')[5].split('x')[0],
+  height = img.split('/')[5].split('x')[1];
 ---
 
 <services-container
   data-service={`${id}`}
   data-position={`${right ? 'right' : 'left'}`}
-  class={`mx-auto max-w-7xl block px-6 py-24 sm:py-32 lg:flex md:gap-x-10 md:px-8 md:py-20 ${
+  class={`mx-auto max-w-7xl block px-6 py-24 sm:py-32 lg:flex md:gap-x-10  lg:gap-x-16  md:px-8 md:py-20 ${
     right ? 'flex-row-reverse' : 'flex-row'
   }`}
 >
@@ -30,23 +34,15 @@ const { id, right = false, img } = Astro.props;
     data-img={`service-${id}`}
     class="mt-16 px-6 sm:mt-24 lg:mt-0 lg:px-0"
   >
-    <div class="mx-auto max-w-xs shadow-2xl lg:max-w-2xl">
-      <Picture
+    <div class="mx-auto max-w-xs shadow-lg lg:max-w-2xl lg:shadow-2xl">
+      <Image
         src={img}
-        alt="A random image"
+        alt={`${title} layout image`}
         sizes="(min-width: 600px) 600px, 100vw"
+        width={width}
+        height={height}
       />
     </div>
-    <!-- <Picture
-      aspectRatio={9 / 21}
-      class="shadow-2xl"
-      src={img}
-      widths={[200, 400, 600]}
-      sizes="(max-width: 600px) 100vw, 600px"
-      alt="A rocket blasting off."
-    /> -->
-
-    <!-- <Image src={img} height="auto" width={300} alt="descriptive text" /> -->
   </div>
 </services-container>
 
@@ -56,9 +52,9 @@ const { id, right = false, img } = Astro.props;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // ScrollTrigger.defaults({
-  //   markers: true,
-  // });
+  ScrollTrigger.defaults({
+    // markers: true,
+  });
 
   class ServicesContainer extends HTMLElement {
     constructor() {
@@ -78,15 +74,21 @@ const { id, right = false, img } = Astro.props;
       mm.add('(min-width: 1024px)', () => {
         gsap
           .timeline({
-            ease: 'expo.out',
-
+            delay: 0.5,
+            defaults: {
+              ease: 'expo.out',
+              autoAlpha: 0,
+            },
             scrollTrigger: {
               trigger: `[data-service="${service}"]`,
-              start: 'top 10%',
+              start: 'top 20%',
               end: 'bottom 30%',
               scrub: true,
               pin: true,
             },
+          })
+          .from(`[data-img=${idImg?.dataset.img}]`, {
+            autoAlpha: 0,
           })
           .from(`[data-content="${idContent?.dataset.content}"]`, {
             autoAlpha: 0,
@@ -97,10 +99,11 @@ const { id, right = false, img } = Astro.props;
           })
           .to(`[data-img=${idImg?.dataset.img}]`, {
             yPercent: -70,
+            autoAlpha: 1,
           });
       });
 
-      mm.add('(max-width: 1024px)', () => {
+      mm.add('(max-width: 1023px)', () => {
         gsap
           .timeline({
             delay: 0.5,
@@ -110,10 +113,9 @@ const { id, right = false, img } = Astro.props;
             },
             scrollTrigger: {
               trigger: `[data-service="${service}"]`,
-              start: 'top 5%',
+              start: 'top 30%',
               end: 'bottom 50%',
               scrub: true,
-              pin: true,
             },
           })
           .from(`[data-content="${idContent?.dataset.content}"]`, {

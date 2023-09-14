@@ -1,24 +1,63 @@
 ---
+import { useStoryblokApi } from '@storyblok/astro';
 import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
+import { SEO } from 'astro-seo';
+
+// import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
 export interface Props {
   title: string;
 }
+
+export interface HeaderContentProps {
+  siteTitle: string;
+  siteDescription: string;
+}
 const { title } = Astro.props;
+
+const storyblokApi = useStoryblokApi();
+
+const { data } = await storyblokApi.get('cdn/stories/config', {
+  version: 'draft',
+
+  resolve_links: 'url',
+});
+const headerContent = data?.story?.content;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <SEO
+      title={headerContent?.siteTitle}
+      description={headerContent?.siteDescription}
+      openGraph={{
+        basic: {
+          title: headerContent?.siteTitle,
+          type: 'website',
+          image: headerContent?.ogImage?.filename,
+        },
+      }}
+      extend={{
+        // extending the default link tags
+        link: [{ rel: 'icon', href: '/favicon.ico' }],
+        // extending the default meta tags
+      }}
+    />
+
     <GoogleFontsOptimizer
       url="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Shadows+Into+Light&display=swap"
     />
+    <!-- <ViewTransitions /> -->
     <title>{title}</title>
   </head>
   <body>
