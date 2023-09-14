@@ -19,9 +19,11 @@ const { blok } = Astro.props;
           class="max-w-[200px] overflow-hidden rounded-full md:max-w-[300px] lg:max-w-md"
         >
           <Image
-            src={`${blok.avatar.filename}/m/600x600`}
+            src={`${blok.avatar.filename}/m/500x500`}
             sizes="(max-width: 400px) 100vw, 400px"
-            alt="descriptive text"
+            alt="Jose Santos IV"
+            decoding="async"
+            loading="lazy"
             width="400"
             height="400"
           />
