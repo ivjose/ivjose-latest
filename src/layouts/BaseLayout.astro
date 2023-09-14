@@ -46,11 +46,25 @@ const headerContent = data?.story?.content;
           type: 'website',
           image: headerContent?.ogImage?.filename,
         },
+        optional: {
+          description: headerContent?.siteDescription,
+        },
       }}
       extend={{
         // extending the default link tags
         link: [{ rel: 'icon', href: '/favicon.ico' }],
         // extending the default meta tags
+        meta: [
+          {
+            name: 'twitter:image',
+            content: headerContent?.ogImage?.filename,
+          },
+          { name: 'twitter:title', content: headerContent?.siteTitle },
+          {
+            name: 'twitter:description',
+            content: headerContent?.ogImage?.filename,
+          },
+        ],
       }}
     />
 
