@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^4.0.5",
     "@botpoison/node": "^0.1.10",
     "@storyblok/astro": "^3.0.0",
     "astro": "^3.0.12",

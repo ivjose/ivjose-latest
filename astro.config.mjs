@@ -1,4 +1,5 @@
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel/serverless';
 import storyblok from '@storyblok/astro';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { defineConfig } from 'astro/config';
@@ -7,6 +8,7 @@ const { SECRET_STORYBLOK } = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 export default defineConfig({
   output: 'server',
+  adapter: vercel(),
   integrations: [
     tailwind({
       // Example: Disable injecting a basic `base.css` import on every page.
