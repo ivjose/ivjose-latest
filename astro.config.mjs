@@ -7,7 +7,7 @@ import { loadEnv } from 'vite';
 const { SECRET_STORYBLOK } = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 export default defineConfig({
-  output: 'server',
+  output: 'hybrid',
   adapter: vercel(),
   integrations: [
     tailwind({
