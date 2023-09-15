@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+const { avatar, firstName, lastName, tags } = Astro.props;
+---
+
+<div data-container="hero" class="min-h-full">
+  <div
+    data-gsap="hero-wrapper"
+    class="mx-auto max-h-full max-w-7xl translate-y-16 justify-center overflow-clip px-6 pb-24 pt-10 will-change-[transform,_opacity] sm:pb-32 lg:flex lg:translate-y-36 lg:items-center lg:px-8 lg:py-40"
+  >
+    <div class="flex justify-center lg:justify-end lg:pr-10">
+      <div
+        data-gsap="avatar"
+        class="invisible px-16 will-change-transform lg:px-14"
+      >
+        <div
+          class="max-w-[200px] overflow-hidden rounded-full md:max-w-[300px] lg:max-w-md"
+        >
+          <Image
+            src={`${avatar.filename}/m/400x400`}
+            sizes="(max-width: 400px) 100vw, 400px"
+            alt="Jose Santos IV"
+            decoding="async"
+            loading="lazy"
+            width="400"
+            height="400"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="relative mt-10 flex lg:mt-0 lg:flex-none">
+      <h1
+        class="mx-auto flex items-start justify-center text-2xl font-bold will-change-[transform,_opacity] lg:justify-start lg:text-6xl"
+      >
+        <div
+          data-gsap="jose-bg"
+          class="invisible relative z-10 px-4 py-2 uppercase tracking-wider text-slate-800 will-change-[transform,_opacity] lg:px-12 lg:py-4"
+        >
+          <span
+            data-gsap="jose"
+            class="inline-block will-change-[transform,_opacity]"
+          >
+            {firstName}
+          </span>
+          <div
+            class="absolute inset-0 -z-10 h-full w-full skew-x-[-30deg] bg-rose-500 text-4xl"
+          >
+          </div>
+        </div>
+
+        <div
+          data-gsap="santos-bg"
+          class="invisible relative -ml-6 mt-6 px-4 py-2 uppercase tracking-wider text-gray-200 will-change-[transform,_opacity] lg:-ml-12 lg:mt-12 lg:px-12 lg:py-4"
+        >
+          <span
+            data-gsap="santos"
+            class="inline-block will-change-[transform,_opacity]"
+          >
+            {lastName}</span
+          >
+          <div
+            class="absolute inset-0 -z-10 h-full w-full skew-x-[-30deg] bg-slate-800 text-4xl"
+          >
+          </div>
+          <p
+            data-gsap="tags"
+            class="invisible absolute right-0 top-0 -mr-12 -mt-8 text-xs leading-8 text-gray-600 will-change-[transform,_opacity] lg:-mr-4 lg:-mt-10 lg:text-lg"
+          >
+            {tags}
+          </p>
+        </div>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from 'gsap/gsap-core';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.defaults({
+    // markers: true,
+  });
+
+  gsap
+    .timeline({
+      delay: 0.5,
+      defaults: {
+        ease: 'expo.out',
+        autoAlpha: 1,
+      },
+      scrollTrigger: {
+        trigger: '[data-container="hero"]',
+        immediateRender: false,
+        start: '20% 80%',
+        end: 'bottom 20%',
+        // scrub: true,
+        // pin: true,
+        toggleActions: 'restart reset restart reset',
+      },
+    })
+    .from(['[data-gsap="jose-bg"]', '[data-gsap="santos-bg"]'], {
+      autoAlpha: 0,
+      y: gsap.utils.wrap([-30, 30]),
+      duration: 0.75,
+      ease: 'expo.out',
+      overwrite: 'auto',
+    })
+    .from(['[data-gsap="jose"]', '[data-gsap="santos"]'], {
+      autoAlpha: 0,
+      x: gsap.utils.wrap([-30, 30]),
+      duration: 0.75,
+      ease: 'expo.out',
+      overwrite: 'auto',
+    })
+    .from(['[data-gsap="avatar"]', '[data-gsap="tags"]'], {
+      autoAlpha: 0,
+      x: gsap.utils.wrap([-30, 30]),
+      duration: 0.75,
+      ease: 'expo.out',
+      overwrite: 'auto',
+    })
+    .to('[data-gsap="hero-wrapper"]', {
+      y: -30,
+      opacity: 1,
+      autoAlpha: 1,
+      duration: 0.75,
+      ease: 'expo.out',
+    })
+    .to('[data-gsap="intro"]', {
+      y: -70,
+      opacity: 1,
+      autoAlpha: 1,
+      duration: 0.75,
+      ease: 'expo.out',
+    })
+    .to('[data-gsap="social"]', {
+      y: -70,
+      opacity: 1,
+      autoAlpha: 1,
+      duration: 0.75,
+      ease: 'expo.out',
+    })
+    .to('[data-gsap="arrow-wrap"]', {
+      y: -70,
+      opacity: 1,
+      autoAlpha: 1,
+      duration: 0.75,
+      ease: 'expo.out',
+    })
+    .to('[data-gsap="arrow"]', {
+      duration: 0.6,
+      y: 70,
+      ease: 'circ.in',
+      repeat: -1,
+      yoyo: true,
+    });
+</script>
