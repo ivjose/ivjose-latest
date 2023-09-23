@@ -10,6 +10,21 @@ const { data } = await storyblokApi.get('cdn/stories/config', {
   resolve_links: 'url',
 });
 const headerContent = data?.story?.content;
+
+const currentPath = new URL(Astro.request.url).pathname;
+
+console.log(currentPath, 'SSSS');
+
+const routes = [
+  {
+    url: '/',
+    label: 'Home',
+  },
+  {
+    url: '/contact',
+    label: 'Say Hi!',
+  },
+];
 ---
 
 <header class="relative z-10 bg-white">
@@ -31,16 +46,18 @@ const headerContent = data?.story?.content;
     </div>
 
     <nav class="space-x-2 md:flex md:space-x-10">
-      <a
-        href="/"
-        class="text-sm font-medium text-gray-700 hover:text-gray-900 md:text-lg"
-        >Home</a
-      >
-      <a
-        href="/contact"
-        class="text-sm font-medium text-gray-700 hover:text-gray-900 md:text-lg"
-        >Say Hi!</a
-      >
+      {
+        routes.map((route) => (
+          <a
+            href={route.url}
+            class={`text-sm font-semibold text-gray-700 hover:text-gray-900 md:text-xl ${
+              currentPath === route.url ? 'text-red-600 hover:text-red-700' : ''
+            }`}
+          >
+            {route.label}
+          </a>
+        ))
+      }
     </nav>
   </div>
 </header>

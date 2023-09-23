@@ -3,7 +3,6 @@ import { useStoryblokApi } from '@storyblok/astro';
 import { GoogleFontsOptimizer } from 'astro-google-fonts-optimizer';
 import { SEO } from 'astro-seo';
 
-// import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
@@ -71,14 +70,14 @@ const headerContent = data?.story?.content;
     <GoogleFontsOptimizer
       url="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Shadows+Into+Light&display=swap"
     />
-    <!-- <ViewTransitions /> -->
+
     <title>{title}</title>
   </head>
   <body>
     <Header />
     <main
       data-gsap="layout"
-      class="transition-fade min-h-[calc(100vh_-_301px)]"
+      class="transition-fade min-h-[calc(100vh_-_212px)]"
     >
       <slot>No Content</slot>
     </main>
