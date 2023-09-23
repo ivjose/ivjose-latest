@@ -41,6 +41,17 @@ const headerContent = data?.story?.content;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-2YD2CYYZG1"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-2YD2CYYZG1');
+    </script>
+
     <SEO
       title={headerContent?.siteTitle}
       description={headerContent?.siteDescription}
@@ -87,17 +98,5 @@ const headerContent = data?.story?.content;
       <slot>No Content</slot>
     </main>
     <Footer />
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2YD2CYYZG1"
-    ></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-2YD2CYYZG1');
-    </script>
   </body>
 </html>
