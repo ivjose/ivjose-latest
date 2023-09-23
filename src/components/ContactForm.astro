@@ -26,9 +26,8 @@ if (Astro.request.method === 'POST') {
 
     // return Astro.redirect('/contact');
   } catch (error) {
-    status = 'error';
-
     if (error instanceof Error) {
+      status = 'error';
       console.error(error.message);
     }
   }
@@ -69,7 +68,6 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </label>
       <div class="mt-1">
         <input
-          required
           type="text"
           name="name"
           id="name"
@@ -85,7 +83,6 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </label>
       <div class="mt-1">
         <input
-          required
           type="email"
           name="email"
           id="email"
