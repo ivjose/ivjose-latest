@@ -1,7 +1,7 @@
 ---
 import Alert from './Alert.astro';
 
-let status = '';
+let formStatus = '';
 if (Astro.request.method === 'POST') {
   try {
     const data = await Astro.request.formData();
@@ -22,12 +22,10 @@ if (Astro.request.method === 'POST') {
         ...values,
       }),
     });
-    status = 'submitted';
-
-    // return Astro.redirect('/contact');
+    formStatus = 'submitted';
   } catch (error) {
     if (error instanceof Error) {
-      status = 'error';
+      formStatus = 'error';
       console.error(error.message);
     }
   }
@@ -48,10 +46,10 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
   <p class="mb-6 text-xl text-slate-700">
     I'm looking forward to helping you. Just send a message about what I can do.
   </p>
-  {status === 'error' && <Alert status="error" message={ERROR_MESSAGE} />}
+  {formStatus === 'error' && <Alert status="error" message={ERROR_MESSAGE} />}
 
   {
-    status === 'submitted' && (
+    formStatus === 'submitted' && (
       <Alert status="submitted" message={SUCCESS_MESSAGE} />
     )
   }
@@ -120,19 +118,32 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
   </form>
 </div>
 
-<script>
-  const formElement = document.getElementById('form') as HTMLFormElement;
-  const buttonElement = document.getElementById('button') as HTMLButtonElement;
+<script define:vars={{ formStatus }}>
+  const formElement = document.getElementById('form');
+  const buttonElement = document.getElementById('button');
+  const alertElement = formStatus && document.querySelector('[role=alert]');
+
+  console.log(formStatus);
   formElement.addEventListener('botpoison-challenge-start', function () {
     buttonElement.setAttribute('disabled', 'disabled');
     buttonElement.innerText = '...Loading';
+    if (alertElement) {
+      alertElement.style.display = 'none';
+    }
   });
   formElement.addEventListener('botpoison-challenge-success', function () {
     buttonElement.removeAttribute('disabled');
     buttonElement.innerText = 'Submit';
+
+    if (alertElement) {
+      alertElement.style.display = 'block';
+    }
   });
   formElement.addEventListener('botpoison-challenge-error', function () {
     buttonElement.removeAttribute('disabled');
     buttonElement.innerText = 'Submit';
+    if (alertElement) {
+      alertElement.style.display = 'block';
+    }
   });
 </script>
