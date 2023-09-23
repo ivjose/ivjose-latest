@@ -1,5 +1,5 @@
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 import storyblok from '@storyblok/astro';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { defineConfig } from 'astro/config';
@@ -7,7 +7,7 @@ import { loadEnv } from 'vite';
 const { SECRET_STORYBLOK } = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 export default defineConfig({
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel(),
   integrations: [
     tailwind({
