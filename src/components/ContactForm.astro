@@ -23,7 +23,8 @@ if (Astro.request.method === 'POST') {
       }),
     });
     status = 'submitted';
-    await response.json();
+
+    // return Astro.redirect('/contact');
   } catch (error) {
     status = 'error';
 
@@ -111,12 +112,14 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </div>
     </div>
 
-    <button
-      type="submit"
-      id="button"
-      class="inline-flex w-full items-center justify-center rounded-full border border-transparent bg-slate-800 px-6 py-3 text-xl font-medium text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
-      >Submit</button
-    >
+    <div>
+      <button
+        type="submit"
+        id="button"
+        class="mt-6 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-slate-800 px-6 py-3 text-xl font-medium text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
+        >Submit</button
+      >
+    </div>
   </form>
 </div>
 
