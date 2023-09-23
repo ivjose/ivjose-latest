@@ -45,7 +45,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
   >
     Just say Hi!
   </h2>
-  <p class="text-xl text-slate-700">
+  <p class="mb-6 text-xl text-slate-700">
     I'm looking forward to helping you. Just send a message about what I can do.
   </p>
   {status === 'error' && <Alert status="error" message={ERROR_MESSAGE} />}
@@ -60,7 +60,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
     id="form"
     method="POST"
     data-botpoison-public-key={import.meta.env.PUBLIC_CAPTCHA_KEY}
-    class="mt-6 w-full space-y-4"
+    class="w-full space-y-4"
   >
     <div class="sm:col-span-2">
       <label for="name" class="block text-xl font-medium text-slate-900">

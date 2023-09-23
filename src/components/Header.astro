@@ -43,12 +43,12 @@ const routes = [
       </a>
     </div>
 
-    <nav class="space-x-2 md:flex md:space-x-10">
+    <nav class="space-x-5 md:flex md:space-x-10">
       {
         routes.map((route) => (
           <a
             href={route.url}
-            class={`text-sm font-semibold text-gray-700 hover:text-gray-900 md:text-xl ${
+            class={`text-base font-semibold text-gray-700 hover:text-gray-900 md:text-xl ${
               currentPath === route.url ? 'text-red-600 hover:text-red-700' : ''
             }`}
           >
