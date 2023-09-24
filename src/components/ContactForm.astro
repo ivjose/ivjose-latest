@@ -107,7 +107,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </div>
     </div>
 
-    <div>
+    <div class="pb-16">
       <button
         type="submit"
         id="button"
@@ -119,31 +119,31 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
 </div>
 
 <script define:vars={{ formStatus }}>
-  const formElement = document.getElementById('form');
-  const buttonElement = document.getElementById('button');
-  const alertElement = formStatus && document.querySelector('[role=alert]');
+const formElement = document.getElementById('form');
+const buttonElement = document.getElementById('button');
+const alertElement = formStatus && document.querySelector('[role=alert]');
 
-  console.log(formStatus);
-  formElement.addEventListener('botpoison-challenge-start', function () {
-    buttonElement.setAttribute('disabled', 'disabled');
-    buttonElement.innerText = '...Loading';
-    if (alertElement) {
-      alertElement.style.display = 'none';
-    }
-  });
-  formElement.addEventListener('botpoison-challenge-success', function () {
-    buttonElement.removeAttribute('disabled');
-    buttonElement.innerText = 'Submit';
+console.log(formStatus);
+formElement.addEventListener('botpoison-challenge-start', function () {
+  buttonElement.setAttribute('disabled', 'disabled');
+  buttonElement.innerText = '...Loading';
+  if (alertElement) {
+    alertElement.style.display = 'none';
+  }
+});
+formElement.addEventListener('botpoison-challenge-success', function () {
+  buttonElement.removeAttribute('disabled');
+  buttonElement.innerText = 'Submit';
 
-    if (alertElement) {
-      alertElement.style.display = 'block';
-    }
-  });
-  formElement.addEventListener('botpoison-challenge-error', function () {
-    buttonElement.removeAttribute('disabled');
-    buttonElement.innerText = 'Submit';
-    if (alertElement) {
-      alertElement.style.display = 'block';
-    }
-  });
+  if (alertElement) {
+    alertElement.style.display = 'block';
+  }
+});
+formElement.addEventListener('botpoison-challenge-error', function () {
+  buttonElement.removeAttribute('disabled');
+  buttonElement.innerText = 'Submit';
+  if (alertElement) {
+    alertElement.style.display = 'block';
+  }
+});
 </script>
