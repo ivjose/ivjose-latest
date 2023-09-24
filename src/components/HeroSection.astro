@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-const { avatar, firstName, lastName, tags } = Astro.props;
+import Social from '../components/Social.astro';
+
+const { avatar, firstName, lastName, tags, socials } = Astro.props;
+
 ---
 
 <div data-container="hero" class="min-h-full">
@@ -72,11 +75,12 @@ const { avatar, firstName, lastName, tags } = Astro.props;
       </h1>
     </div>
   </div>
+  <Social socials={socials} />
 </div>
 
 <script>
   import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.defaults({
