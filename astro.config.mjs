@@ -1,4 +1,4 @@
-import partytown from "@astrojs/partytown";
+import partytown from '@astrojs/partytown';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel/serverless';
 import storyblok from '@storyblok/astro';
@@ -38,7 +38,7 @@ export default defineConfig({
     partytown({
       // Adds dataLayer.push as a forwarding-event.
       config: {
-        forward: ["dataLayer.push"],
+        forward: ['dataLayer.push'],
       },
     }),
   ],

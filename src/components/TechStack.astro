@@ -50,9 +50,7 @@ const { tech } = Astro.props;
                   />
                   <p class="sr-only mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                     {stack.title}
-
-                    
-                </p>
+                  </p>
                 </li>
               );
             })}
@@ -65,7 +63,7 @@ const { tech } = Astro.props;
 
 <script>
   import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
   // ScrollTrigger.defaults({

@@ -1,25 +1,18 @@
 ---
 import { Image } from 'astro:assets';
 type Socials = {
-url: string;
-logo: any,
-title: string;
-tooltip: string;
-}
+  url: string;
+  logo: any;
+  title: string;
+  tooltip: string;
+};
 interface Props {
   socials: Socials[];
- 
 }
 
 const { socials } = Astro.props;
 
-const skills = [
-  'Resourceful',
-  'Talented',
-  'Awesome',
-  'Hardworking'
-]
-
+const skills = ['Resourceful', 'Talented', 'Awesome', 'Hardworking'];
 ---
 
 <div class="px-4 text-center">
@@ -32,9 +25,12 @@ const skills = [
         <div class="absolute -top-0 right-full w-full lg:-top-1">
           <ul class="animation list-none text-right text-rose-500">
             {
-              skills.map(skill =>     <li class="m-0 font-custom leading-10 font-semibold">{skill}</li>)
+              skills.map((skill) => (
+                <li class="m-0 font-custom font-semibold leading-10">
+                  {skill}
+                </li>
+              ))
             }
-         
           </ul>
         </div>
         &nbsp;<strong>front-end developer</strong>
@@ -42,7 +38,7 @@ const skills = [
     </div>
 
     <div class="text-slate-700 lg:-mr-[120px] lg:inline-block lg:ml-2">
-       from the <strong>Philippines</strong> 🇵🇭.
+      from the <strong>Philippines</strong> 🇵🇭.
     </div>
   </h2>
 
@@ -51,23 +47,25 @@ const skills = [
       data-gsap="social"
       class="flex items-center justify-center space-x-6 opacity-0"
     >
-
-    {
-      socials.map(social => <a href={social.url} title={social.tooltip} class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 grayscale duration-300  hover:grayscale-0 focus:grayscale-0">
-        <span class="sr-only">{social.title}</span>
-        <Image
-            src={`${social.logo.filename}/m/50x50`}
-
-            alt="Jose Santos IV"
-            decoding="async"
-            loading="lazy"
-            width="50"
-            height="50"
-          />
-      </a>)
-      
-    }
-      
+      {
+        socials.map((social) => (
+          <a
+            href={social.url}
+            title={social.tooltip}
+            class="grayscale transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110  hover:grayscale-0 focus:grayscale-0"
+          >
+            <span class="sr-only">{social.title}</span>
+            <Image
+              src={`${social.logo.filename}/m/50x50`}
+              alt="Jose Santos IV"
+              decoding="async"
+              loading="lazy"
+              width="50"
+              height="50"
+            />
+          </a>
+        ))
+      }
     </div>
     <div data-gsap="arrow-wrap" class="flex justify-center py-8 opacity-0">
       <svg
