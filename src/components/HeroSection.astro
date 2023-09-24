@@ -19,6 +19,7 @@ const { avatar, firstName, lastName, tags, socials } = Astro.props;
           class="max-w-[200px] overflow-hidden rounded-full md:max-w-[300px] lg:max-w-md"
         >
           <Image
+            class="w-full h-auto"
             src={`${avatar.filename}/m/400x400`}
             sizes="(max-width: 400px) 100vw, 400px"
             alt="Jose Santos IV"
