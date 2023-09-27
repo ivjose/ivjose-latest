@@ -36,6 +36,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </label>
       <div class="mt-1">
         <input
+          required
           type="text"
           name="name"
           id="name"
@@ -51,6 +52,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
       </label>
       <div class="mt-1">
         <input
+          required
           type="email"
           name="email"
           id="email"
@@ -109,14 +111,11 @@ const submitForm = (e) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          token,
-          values: Object.fromEntries(values),
-        }),
-      });
-      if (response.ok) {
+          token, console.log(formStatus, 'NEW DATA!');
+          if(response.ok) {
         const data = await response.json();
 
-        if (data?.success) {
+        if(data?.success) {
           const statusSubmitted = document.querySelector(
             '[data-status="submitted"]'
           );
