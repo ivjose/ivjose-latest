@@ -91,6 +91,7 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
 </div>
 <script define:vars={{ siteKey }}>
 const buttonElement = document.getElementById('submit-button');
+const form = document.getElementById('contact-form');
 
 const submitForm = (e) => {
   e.preventDefault();
@@ -111,15 +112,19 @@ const submitForm = (e) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          token, console.log(formStatus, 'NEW DATA!');
-          if(response.ok) {
+          token,
+          values: Object.fromEntries(values),
+        }),
+      });
+      if (response.ok) {
         const data = await response.json();
 
-        if(data?.success) {
+        if (data?.success) {
           const statusSubmitted = document.querySelector(
             '[data-status="submitted"]'
           );
           statusSubmitted.classList.toggle('hidden');
+          form.reset();
         } else {
           const statusError = document.querySelector('[data-status="error"]');
           statusError.classList.toggle('hidden');
@@ -132,6 +137,5 @@ const submitForm = (e) => {
   });
 };
 
-const form = document.getElementById('contact-form');
 form.addEventListener('submit', submitForm);
 </script>

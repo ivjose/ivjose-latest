@@ -9,6 +9,7 @@ const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_SITE_KEY;
   <ContactForm siteKey={RECAPTCHA_SITE_KEY} />
 </BaseLayout>
 <script
+  is:inline
   type="text/javascript"
   src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
 ></script>
