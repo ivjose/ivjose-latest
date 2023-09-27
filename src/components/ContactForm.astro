@@ -1,35 +1,11 @@
 ---
 import Alert from './Alert.astro';
+type Props = {
+  siteKey: string;
+};
+let formStatus = 'XXX';
 
-let formStatus = '';
-if (Astro.request.method === 'POST') {
-  try {
-    const data = await Astro.request.formData();
-
-    const values = {
-      name: data.get('name'),
-      email: data.get('email'),
-      message: data.get('message'),
-    };
-
-    const response = await fetch(import.meta.env.PUBLIC_FORM_API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        ...values,
-      }),
-    });
-    formStatus = 'submitted';
-  } catch (error) {
-    if (error instanceof Error) {
-      formStatus = 'error';
-      console.error(error.message);
-    }
-  }
-}
+const { siteKey } = Astro.props;
 
 const SUCCESS_MESSAGE = `Thanks for your message. I'll be in touch soon.`;
 const ERROR_MESSAGE = 'Submission failed. Try again later';
@@ -46,20 +22,14 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
   <p class="mb-6 text-xl text-slate-700">
     I'm looking forward to helping you. Just send a message about what I can do.
   </p>
-  {formStatus === 'error' && <Alert status="error" message={ERROR_MESSAGE} />}
+  <div data-status="error" class="hidden">
+    <Alert status="error" message={ERROR_MESSAGE} />
+  </div>
 
-  {
-    formStatus === 'submitted' && (
-      <Alert status="submitted" message={SUCCESS_MESSAGE} />
-    )
-  }
-
-  <form
-    id="form"
-    method="POST"
-    data-botpoison-public-key={import.meta.env.PUBLIC_CAPTCHA_KEY}
-    class="w-full space-y-4"
-  >
+  <div data-status="submitted" class="hidden">
+    <Alert status="submitted" message={SUCCESS_MESSAGE} />
+  </div>
+  <form id="contact-form" class="w-full space-y-4">
     <div class="sm:col-span-2">
       <label for="name" class="block text-xl font-medium text-slate-900">
         Name
@@ -110,40 +80,59 @@ const ERROR_MESSAGE = 'Submission failed. Try again later';
     <div class="pb-16">
       <button
         type="submit"
-        id="button"
+        id="submit-button"
         class="mt-6 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-slate-800 px-6 py-3 text-xl font-medium text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
         >Submit</button
       >
     </div>
   </form>
 </div>
+<script define:vars={{ siteKey }}>
+const buttonElement = document.getElementById('submit-button');
 
-<script define:vars={{ formStatus }}>
-const formElement = document.getElementById('form');
-const buttonElement = document.getElementById('button');
-const alertElement = formStatus && document.querySelector('[role=alert]');
+const submitForm = (e) => {
+  e.preventDefault();
 
-console.log(formStatus);
-formElement.addEventListener('botpoison-challenge-start', function () {
+  const values = new FormData(e.target);
+
+  const alertStatus = document.querySelectorAll('[data-status]');
+  alertStatus.forEach((alert) => alert.classList.add('hidden'));
+
   buttonElement.setAttribute('disabled', 'disabled');
   buttonElement.innerText = '...Loading';
-  if (alertElement) {
-    alertElement.style.display = 'none';
-  }
-});
-formElement.addEventListener('botpoison-challenge-success', function () {
-  buttonElement.removeAttribute('disabled');
-  buttonElement.innerText = 'Submit';
 
-  if (alertElement) {
-    alertElement.style.display = 'block';
-  }
-});
-formElement.addEventListener('botpoison-challenge-error', function () {
-  buttonElement.removeAttribute('disabled');
-  buttonElement.innerText = 'Submit';
-  if (alertElement) {
-    alertElement.style.display = 'block';
-  }
-});
+  grecaptcha.ready(function () {
+    grecaptcha.execute(siteKey, { action: 'submit' }).then(async (token) => {
+      const response = await fetch('/api/recaptcha', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token,
+          values: Object.fromEntries(values),
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data?.success) {
+          const statusSubmitted = document.querySelector(
+            '[data-status="submitted"]'
+          );
+          statusSubmitted.classList.toggle('hidden');
+        } else {
+          const statusError = document.querySelector('[data-status="error"]');
+          statusError.classList.toggle('hidden');
+        }
+
+        buttonElement.removeAttribute('disabled');
+        buttonElement.innerText = 'Submit';
+      }
+    });
+  });
+};
+
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', submitForm);
 </script>

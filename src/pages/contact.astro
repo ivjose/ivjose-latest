@@ -1,11 +1,14 @@
 ---
 import ContactForm from '../components/ContactForm.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_SITE_KEY;
 ---
 
 <BaseLayout title="Contact">
-  <ContactForm />
+  <ContactForm siteKey={RECAPTCHA_SITE_KEY} />
 </BaseLayout>
-
-<script type="text/partytown" src="https://unpkg.com/@botpoison/browser"
+<script
+  type="text/javascript"
+  src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
 ></script>

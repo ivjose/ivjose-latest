@@ -14,7 +14,6 @@ export interface HeaderContentProps {
   siteTitle: string;
   siteDescription: string;
 }
-const { title } = Astro.props;
 
 const storyblokApi = useStoryblokApi();
 
@@ -87,8 +86,6 @@ const headerContent = data?.story?.content;
     <GoogleFontsOptimizer
       url="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Shadows+Into+Light&display=swap"
     />
-
-    <title>{title}</title>
   </head>
   <body>
     <Header />
