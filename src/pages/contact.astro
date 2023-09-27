@@ -5,9 +5,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const RECAPTCHA_SITE_KEY = import.meta.env.PUBLIC_SITE_KEY;
 ---
 
+<style is:global>
+  .rc-anchor-normal-footer {
+    display: none !important;
+  }
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
+</style>
+
 <BaseLayout title="Contact">
   <ContactForm siteKey={RECAPTCHA_SITE_KEY} />
 </BaseLayout>
+
 <script
   is:inline
   type="text/javascript"
