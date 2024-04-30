@@ -81,8 +81,8 @@ const width = img.split('/')[5].split('x')[0],
             },
             scrollTrigger: {
               trigger: `[data-service="${service}"]`,
-              start: 'top 15%',
-              end: 'bottom 30%',
+              start: 'top 5%',
+              end: 'bottom 20%',
               scrub: true,
               pin: true,
             },
@@ -98,7 +98,7 @@ const width = img.split('/')[5].split('x')[0],
             overwrite: 'auto',
           })
           .to(`[data-img=${idImg?.dataset.img}]`, {
-            yPercent: -70,
+            yPercent: -50,
             autoAlpha: 1,
           });
       });
