@@ -2,11 +2,10 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -14,18 +13,18 @@ jobs:
         node-version: [v20.13.1]
 
     env:
-        PUBLIC_FORM_API: ${{secrets.PUBLIC_FORM_API}}
-        PUBLIC_SITE_KEY: ${{secrets.PUBLIC_SITE_KEY}}
-        SECRET_SECRET_KEY: ${{secrets.SECRET_SECRET_KEY}}
-        SECRET_STORYBLOK: ${{secrets.SECRET_STORYBLOK}}
-
-
+      PUBLIC_FORM_API: ${{secrets.PUBLIC_FORM_API}}
+      PUBLIC_SITE_KEY: ${{secrets.PUBLIC_SITE_KEY}}
+      SECRET_SECRET_KEY: ${{secrets.SECRET_SECRET_KEY}}
+      SECRET_STORYBLOK: ${{secrets.SECRET_STORYBLOK}}
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+        run: /home/ivjose/actions-runner/_work/ivjose-latest/ivjose-latest
+      - run: pm2 restart 0
