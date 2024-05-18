@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [v20.13.1]
+
+    env:
+        PUBLIC_FORM_API: ${{secret.PUBLIC_FORM_API}}
+        PUBLIC_SITE_KEY: ${{secret.PUBLIC_SITE_KEY}}
+        SECRET_SECRET_KEY: ${{secret.SECRET_SECRET_KEY}}
+        SECRET_STORYBLOK: ${{secret.SECRET_STORYBLOK}}
+
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
