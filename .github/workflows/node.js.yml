@@ -14,10 +14,10 @@ jobs:
         node-version: [v20.13.1]
 
     env:
-        PUBLIC_FORM_API: ${{secret.PUBLIC_FORM_API}}
-        PUBLIC_SITE_KEY: ${{secret.PUBLIC_SITE_KEY}}
-        SECRET_SECRET_KEY: ${{secret.SECRET_SECRET_KEY}}
-        SECRET_STORYBLOK: ${{secret.SECRET_STORYBLOK}}
+        PUBLIC_FORM_API: ${{secrets.PUBLIC_FORM_API}}
+        PUBLIC_SITE_KEY: ${{secrets.PUBLIC_SITE_KEY}}
+        SECRET_SECRET_KEY: ${{secrets.SECRET_SECRET_KEY}}
+        SECRET_STORYBLOK: ${{secrets.SECRET_STORYBLOK}}
 
 
     steps:
