@@ -1,6 +1,6 @@
+import node from '@astrojs/node';
 import partytown from '@astrojs/partytown';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel/serverless';
 import storyblok from '@storyblok/astro';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { defineConfig } from 'astro/config';
@@ -9,8 +9,8 @@ const { SECRET_STORYBLOK } = loadEnv(import.meta.env.MODE, process.cwd(), '');
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel({
-    functionPerRoute: false,
+  adapter: node({
+    mode: 'middleware',
   }),
   integrations: [
     tailwind({
