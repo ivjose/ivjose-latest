@@ -27,5 +27,5 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - name: Change Directory
-        run: /home/ivjose/actions-runner/_work/ivjose-latest/ivjose-latest
+        run: cd /home/ivjose/actions-runner/_work/ivjose-latest/ivjose-latest
       - run: pm2 restart 0
