@@ -34,7 +34,7 @@ export default function Home() {
               Jose Santos IV
             </h1>
             <p className="text-2xl/8 md:text-3xl/10 ">
-              I am a front-end developer specializing in React.js
+              I am a front-end developer specializing in <strong>React.js</strong>
             </p>
            
           </div>
