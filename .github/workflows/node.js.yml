@@ -13,10 +13,7 @@ jobs:
         node-version: [v20.13.1]
 
     env:
-      PUBLIC_FORM_API: ${{secrets.PUBLIC_FORM_API}}
-      PUBLIC_SITE_KEY: ${{secrets.PUBLIC_SITE_KEY}}
-      SECRET_SECRET_KEY: ${{secrets.SECRET_SECRET_KEY}}
-      SECRET_STORYBLOK: ${{secrets.SECRET_STORYBLOK}}
+      NEXT_WEBSITE_URL: ${{secrets.NEXT_WEBSITE_URL}}
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
