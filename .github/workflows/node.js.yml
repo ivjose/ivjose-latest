@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   build:
@@ -15,14 +15,24 @@ jobs:
     env:
       NEXT_WEBSITE_URL: ${{secrets.NEXT_WEBSITE_URL}}
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build --if-present
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - run: pnpm build --if-present
       - name: Change Directory
         run: cd /home/ivjose/actions-runner/_work/ivjose-latest/ivjose-latest
       - run: pm2 restart 0
