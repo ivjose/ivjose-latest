@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - run: pnpm build
       - name: Change Directory
         run: cd /home/ivjose/actions-runner/_work/ivjose-latest/ivjose-latest
