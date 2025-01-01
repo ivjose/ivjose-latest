@@ -65,7 +65,6 @@ export default function RootLayout({
       link: "https://docs.google.com/document/d/1gaebALsWmZ8L58KLGnij-_5Qt9jtnY8ob9MGn_c0zi8/edit",
     },
   ];
-  const GA_NUMBER = "G-2YD2CYYZG1";
   const currentDate = new Date();
   return (
     <html lang="en" className="h-full">
@@ -101,18 +100,25 @@ export default function RootLayout({
           </p>
         </footer>
       </body>
-
+ 
       <Script
-        id="next"
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_NUMBER}`}
-      ></Script>
-      <Script id="next">
-        {`window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${GA_NUMBER}');`}
-      </Script>
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
     </html>
   );
 }
