@@ -8,18 +8,21 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+const TITLE = "Jose Santos IV";
+const DESCRIPTION = `I’m a freelance Frontend Developer specializing in React and in building a web interface with better user experiences.`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Jose Santos IV",
-    template: "%s | Jose Santos IV",
+    default: TITLE,
+    template: `%s | ${TITLE}`,
   },
-  description: `I’m a freelance Frontend Developer specializing in React and in building a web interface with better user experiences.`,
+  description: DESCRIPTION,
   openGraph: {
-    title: "Jose Santos IV",
-    description: `I’m a freelance Frontend Developer specializing in React and in building a web interface with better user experiences.`,
+    title: TITLE,
+    description: DESCRIPTION,
     url: baseUrl,
-    siteName: "Jose Santos IV",
+    siteName: TITLE,
     locale: "en_US",
     type: "website",
   },
