@@ -77,7 +77,7 @@ export default function RootLayout({
               <li key={social.id}>
                 <a
                   href={social.link}
-                  title={social.title}
+                  title={`${social.title} link`}
                   className=" inline-block grayscale transition delay-150 duration-300 ease-in-out hover:-translate-y-1 opacity-45 hover:opacity-100 hover:grayscale-0 focus:grayscale-0"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -86,7 +86,7 @@ export default function RootLayout({
                   <Image
                     className="h-12 w-12"
                     src={social.image}
-                    alt={social.title}
+                    alt={`{social.title} logo`}
                     width={50}
                     height={50}
                     priority
