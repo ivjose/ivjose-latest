@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
       // Basic redirect
       {
         source: '/home',
-        destination: 'https://ivjose.com',
+        destination: 'https://google.com',
         permanent: false,
       },
 
