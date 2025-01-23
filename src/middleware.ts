@@ -8,5 +8,6 @@ const MY_URL = 'https://ivjose.com'
     process.env.NODE_ENV !== "development"
   ) {
     return NextResponse.redirect(MY_URL);
-  }
+  } 
+  return NextResponse.next()
 }
