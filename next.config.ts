@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
         source: '/home',
         destination: 'https://ivjose.com',
         permanent: false,
+        basePath: false
       },
 
     ]
