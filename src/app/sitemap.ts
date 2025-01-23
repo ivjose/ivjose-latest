@@ -1,4 +1,4 @@
-export const baseUrl = "https://ivjose.com";
+export const baseUrl: string = process.env.NEXT_WEBSITE_URL || ''; 
 
 export default async function sitemap() {
   const routes = [""].map((route) => ({

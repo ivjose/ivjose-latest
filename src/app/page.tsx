@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="flex min-h-[calc(100%-400px)] flex-col items-center justify-between font-[family-name:var(--font-geist-sans)]">
       <Image
-        className="h-20 w-20"
+        className="h-20 w-20 mb-20 mt-4"
         src="/ivjose-logo.png"
         alt="ivjose Logo"
         width={150}
