@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+ 
 
+import type { NextConfig } from 'next'
+ 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: '/home',
+        destination: 'https://ivjose.com',
+        permanent: false,
+      },
 
-export default nextConfig;
+    ]
+  },
+}
+ 
+export default nextConfig
