@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
-import Script from "next/script";
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { baseUrl } from "./sitemap";
 import "./globals.css";
 
@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  verification: {
+    google: '0xkyf1UiAC7-dMG5Ot8KNV7TXvncPYFujitASMklK6E'
+  },
   robots: {
     index: true,
     follow: true,
@@ -39,7 +42,7 @@ export const metadata: Metadata = {
     },
   },
 };
-
+ 
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,6 +71,7 @@ export default function RootLayout({
   const currentDate = new Date();
   return (
     <html lang="en" className="h-full">
+     
       <body className={`${montserrat.className} antialiased h-full`}>
         {children}
 
@@ -100,25 +104,8 @@ export default function RootLayout({
           </p>
         </footer>
       </body>
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_ID}`} />
  
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
     </html>
   );
 }

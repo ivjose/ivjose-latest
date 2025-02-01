@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Gabarito } from "next/font/google";
+import Head from 'next/head'
 // import Redirect from "@/components/redirect";
 const gabarito = Gabarito({
   weight: "700",
@@ -11,6 +12,9 @@ export default function Home() {
   return (
     <div className="flex min-h-[calc(100%-400px)] flex-col items-center justify-between font-[family-name:var(--font-geist-sans)]">
       {/* <Redirect /> */}
+      <Head>
+          <meta name="google-site-verification" content="0xkyf1UiAC7-dMG5Ot8KNV7TXvncPYFujitASMklK6E" />
+        </Head>
       <Image
         className="h-20 w-20 mb-20 mt-4"
         src="/ivjose-logo.png"
