@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  alternates: {
+    canonical: baseUrl
+  },
   verification: {
     google: '0xkyf1UiAC7-dMG5Ot8KNV7TXvncPYFujitASMklK6E'
   },
