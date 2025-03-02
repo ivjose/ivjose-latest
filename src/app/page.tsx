@@ -1,16 +1,14 @@
 import Image from "next/image";
 import { Gabarito } from "next/font/google";
-// import Redirect from "@/components/redirect";
+
 const gabarito = Gabarito({
   weight: "700",
   subsets: ["latin"],
 });
 
 export default function Home() {
-   
   return (
     <div className="flex min-h-[calc(100%-400px)] flex-col items-center justify-between font-[family-name:var(--font-geist-sans)]">
- 
       <Image
         className="h-20 w-20 mb-20 mt-4"
         src="/ivjose-logo.png"
@@ -36,9 +34,9 @@ export default function Home() {
               Jose Santos IV
             </h1>
             <p className="text-2xl/8 md:text-3xl/10 ">
-              I am a front-end developer specializing in <strong>React.js</strong>
+              I am a front-end developer specializing in{" "}
+              <strong>React.js</strong>
             </p>
-           
           </div>
         </div>
       </main>

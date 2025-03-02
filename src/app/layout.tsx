@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Redirect from "@/components/redirect";
 import { baseUrl } from "./sitemap";
 import "./globals.css";
 
@@ -74,7 +75,7 @@ export default function RootLayout({
   const currentDate = new Date();
   return (
     <html lang="en" className="h-full">
-     
+           <Redirect />
       <body className={`${montserrat.className} antialiased h-full`}>
         {children}
 
