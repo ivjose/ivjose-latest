@@ -2,7 +2,7 @@
   "name": "ivjose-2025",
   "version": "0.1.0",
   "engines": { 
-    "node": "22" 
+    "node": "20" 
   },
   "private": true,
   "scripts": {
