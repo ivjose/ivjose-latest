@@ -1,7 +1,7 @@
 {
   "name": "ivjose-2025",
   "version": "0.1.0",
-  "packageManager": "pnpm@9.1.1"
+  "packageManager": "pnpm@9.1.1",
   "engines": {
     "node": "20.12.2",
     "pnpm": "9.1.1"
